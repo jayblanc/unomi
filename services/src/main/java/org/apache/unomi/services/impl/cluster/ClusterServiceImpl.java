@@ -27,6 +27,10 @@ import org.apache.unomi.api.conditions.ConditionType;
 import org.apache.unomi.api.services.ClusterService;
 import org.apache.unomi.lifecycle.BundleWatcher;
 import org.apache.unomi.persistence.spi.PersistenceService;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.util.tracker.ServiceTracker;
+import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
