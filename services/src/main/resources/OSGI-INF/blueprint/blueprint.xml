@@ -70,9 +70,6 @@
     <reference id="persistenceService"
                interface="org.apache.unomi.persistence.spi.PersistenceService"/>
     <reference id="httpService" interface="org.osgi.service.http.HttpService"/>
-    <reference id="karafCellarClusterManager" interface="org.apache.karaf.cellar.core.ClusterManager"/>
-    <reference id="karafCellarEventProducer" interface="org.apache.karaf.cellar.core.event.EventProducer"/>
-    <reference id="karafCellarGroupManager" interface="org.apache.karaf.cellar.core.GroupManager"/>
     <reference id="osgiConfigurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin"/>
     <reference id="metricsService" interface="org.apache.unomi.metrics.MetricsService"/>
     <reference id="scriptExecutor" interface="org.apache.unomi.scripting.ScriptExecutor"/>
@@ -409,7 +406,6 @@
         </bean>
     </service>
 
-
     <bean id="configSharingServiceImpl" class="org.apache.unomi.services.impl.configsharing.ConfigSharingServiceImpl"
           destroy-method="preDestroy">
         <property name="configProperties">
@@ -425,21 +421,6 @@
             <value>org.osgi.framework.SynchronousBundleListener</value>
             <value>org.apache.unomi.api.services.ConfigSharingService</value>
         </interfaces>
-    </service>
-
-    <!-- Cluster System Statistics Event Handler -->
-    <bean id="clusterSystemStatisticsEventHandler"
-          class="org.apache.unomi.services.impl.cluster.ClusterSystemStatisticsEventHandler"
-          init-method="init" destroy-method="destroy">
-        <property name="configurationAdmin" ref="osgiConfigurationAdmin"/>
-        <property name="clusterManager" ref="karafCellarClusterManager"/>
-        <property name="groupManager" ref="karafCellarGroupManager"/>
-        <property name="clusterServiceImpl" ref="clusterServiceImpl"/>
-    </bean>
-    <service ref="clusterSystemStatisticsEventHandler" interface="org.apache.karaf.cellar.core.event.EventHandler">
-        <service-properties>
-            <entry key="managed" value="true"/>
-        </service-properties>
     </service>
 
 </blueprint>

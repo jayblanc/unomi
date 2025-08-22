@@ -74,7 +74,6 @@ public class RouterCamelContext implements IRouterCamelContext {
     private String allowedEndpoints;
     private BundleContext bundleContext;
     private ConfigSharingService configSharingService;
-    private ClusterService clusterService;
 
     // TODO UNOMI-572: when fixing UNOMI-572 please remove the usage of the custom ScheduledExecutorService and re-introduce the Unomi Scheduler Service
     private ScheduledExecutorService scheduler;
@@ -99,10 +98,6 @@ public class RouterCamelContext implements IRouterCamelContext {
 
     public void setConfigSharingService(ConfigSharingService configSharingService) {
         this.configSharingService = configSharingService;
-    }
-
-    public void setClusterService(ClusterService clusterService) {
-        this.clusterService = clusterService;
     }
 
     public void setTracing(boolean tracing) {
